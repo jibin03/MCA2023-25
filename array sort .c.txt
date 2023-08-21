@@ -1,0 +1,45 @@
+#include<stdio.h>
+int main()
+{
+	int i,n,a[10],j,temp,elt;
+	printf("Enter the value of array size : ");
+	scanf("%d",&n);
+	//Reading the array
+	for(i=0;i<n;i++)
+	{
+		printf("\nEnter the value at a[%d] : ",i);
+		scanf("%d",&a[i]);
+	}
+	//printing the array
+	printf("\nthe entered array is  : ");	
+	for(i=0;i<n;i++)
+	{
+		printf("%d\t",a[i]);
+	}
+	//sorting the array
+	for(i=0;i<n-1;i++)
+		for(j=i+1;j<n;j++)
+		{
+			if(a[i]>a[j])
+				{
+					temp=a[i];
+					a[i]=a[j];
+					a[j]=temp;
+				}
+		}
+	//printing the array
+	printf("\nthe sorted array is  : ");	
+	for(i=0;i<n;i++)
+	{
+		printf("%d\t",a[i]);
+	}
+	printf("enter an element :");
+		scanf("%d",&elt);
+	for(i=0;i<n;i++)
+	{	
+		if(elt==a[i])
+			printf(" the element was found in %d location",i+1);
+	}
+	return 0;
+}
+

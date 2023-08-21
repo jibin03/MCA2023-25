@@ -1,0 +1,149 @@
+
+SQL> create table directors(d_id int primary key,d_name varchar2(40)not null);
+
+Table created.
+
+SQL> desc directors;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ D_ID                                      NOT NULL NUMBER(38)
+ D_NAME                                    NOT NULL VARCHAR2(40)
+
+SQL> create table stars(s_id int primary key,s_name varchar2(40) unique , about varchar2(100));
+
+Table created.
+
+SQL> desc stars;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ S_ID                                      NOT NULL NUMBER(38)
+ S_NAME                                             VARCHAR2(40)
+ ABOUT                                              VARCHAR2(100)
+
+
+SQL> create table movies(m_id int primary key,m_title varchar2(40) ,R_date date,image_url varchar2(100),certificate varchar2(20),runtime number(3,2),imdb_rating number(3,1) default 0,description varchar2(100), metascore number(3,1) default 0,votes int default 0,gross number(10,2) check (gross>10000)) ;
+
+Table created.
+
+SQL> desc movies;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ M_ID                                      NOT NULL NUMBER(38)
+ M_TITLE                                            VARCHAR2(40)
+ R_DATE                                             DATE
+ IMAGE_URL                                          VARCHAR2(100)
+ CERTIFICATE                                        VARCHAR2(20)
+ RUNTIME                                            NUMBER(3,2)
+ IMDB_RATING                                        NUMBER(3,1)
+ DESCRIPTION                                        VARCHAR2(100)
+ METASCORE                                          NUMBER(3,1)
+ VOTES                                              NUMBER(38)
+ GROSS                                              NUMBER(10,2)
+
+
+SQL> create table movies_directors(movies_id references movies(m_id),directors_id references directors(d_id)primary key);
+
+Table created.
+
+SQL> desc movies_directors;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ MOVIES_ID                                          NUMBER(38)
+ DIRECTORS_ID                              NOT NULL NUMBER(38)
+
+SQL> create table movies_stars(movies_id references movies(m_id),stars_id references stars(s_id) primary key);
+
+Table created.
+
+SQL> desc movies_stars;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ MOVIES_ID                                          NUMBER(38)
+ STARS_ID                                  NOT NULL NUMBER(38)
+
+SQL> alter table stars add dob date;
+
+Table altered.
+
+SQL> desc stars;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ S_ID                                      NOT NULL NUMBER(38)
+ S_NAME                                             VARCHAR2(40)
+ ABOUT                                              VARCHAR2(100)
+ DOB                                                DATE
+
+SQL> alter table movies drop column gross;
+
+Table altered.
+
+SQL> desc movies;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ M_ID                                      NOT NULL NUMBER(38)
+ M_TITLE                                            VARCHAR2(40)
+ R_DATE                                             DATE
+ IMAGE_URL                                          VARCHAR2(100)
+ CERTIFICATE                                        VARCHAR2(20)
+ RUNTIME                                            NUMBER(3,2)
+ IMDB_RATING                                        NUMBER(3,1)
+ DESCRIPTION                                        VARCHAR2(100)
+ METASCORE                                          NUMBER(3,1)
+ VOTES                                              NUMBER(38)
+
+
+SQL> alter table movies add language varchar2(10);
+
+Table altered.
+
+SQL> desc movies;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ M_ID                                      NOT NULL NUMBER(38)
+ M_TITLE                                            VARCHAR2(40)
+ R_DATE                                             DATE
+ IMAGE_URL                                          VARCHAR2(100)
+ CERTIFICATE                                        VARCHAR2(20)
+ RUNTIME                                            NUMBER(3,2)
+ IMDB_RATING                                        NUMBER(3,1)
+ DESCRIPTION                                        VARCHAR2(100)
+ METASCORE                                          NUMBER(3,1)
+ VOTES                                              NUMBER(38)
+ LANGUAGE                                           VARCHAR2(10)
+
+
+SQL> alter table movies rename column R_date to releasedate;
+
+Table altered.
+
+SQL> desc movies;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ M_ID                                      NOT NULL NUMBER(38)
+ M_TITLE                                            VARCHAR2(40)
+ RELEASEDATE                                        DATE
+ IMAGE_URL                                          VARCHAR2(100)
+ CERTIFICATE                                        VARCHAR2(20)
+ RUNTIME                                            NUMBER(3,2)
+ IMDB_RATING                                        NUMBER(3,1)
+ DESCRIPTION                                        VARCHAR2(100)
+ METASCORE                                          NUMBER(3,1)
+ VOTES                                              NUMBER(38)
+ LANGUAGE                                           VARCHAR2(10)
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
